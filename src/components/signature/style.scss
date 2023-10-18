@@ -1,0 +1,31 @@
+.signatureBox {
+  svg {
+    height: 300px;
+    path {
+      stroke-width: 30;
+    }
+  }
+}
+.adityaPath {
+  stroke-dasharray: 58442;
+  stroke-dashoffset: 58442;
+  animation: animate 35s linear forwards;
+}
+.shuklaPath {
+  stroke-dasharray: 58442;
+  stroke-dashoffset: 58442;
+  animation: animate 35s linear forwards;
+  animation-delay: 3.5s;
+}
+.ttopPath {
+  stroke-dasharray: 58442;
+  stroke-dashoffset: 58442;
+  animation: animate 10s linear forwards;
+  animation-delay: 8s;
+}
+
+@keyframes animate {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

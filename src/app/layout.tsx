@@ -1,0 +1,35 @@
+"use client";
+import "./globals.css";
+
+import { Inter } from "next/font/google";
+import Script from "next/script";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        <div className="cursor">
+          <div className="cursor__ball cursor__ball--big">
+            <svg height="40" width="40">
+              <circle cx="20" cy="20" r="20" stroke-width="0"></circle>
+            </svg>
+          </div>
+          <div className="cursor__ball cursor__ball--small">
+            <svg height="10" width="10">
+              <circle cx="5" cy="5" r="4" stroke-width="0"></circle>
+            </svg>
+          </div>
+          {children}
+        </div>
+      </body>
+      <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" />
+      <Script src="./mouseScript.js" />
+    </html>
+  );
+}
