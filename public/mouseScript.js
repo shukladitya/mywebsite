@@ -6,13 +6,14 @@ document.body.addEventListener("mousemove", onMouseMove);
 
 for (let i = 0; i < $hoverables.length; i++) {
   $hoverables[i].addEventListener("mouseenter", () =>
-    onMouseHover($hoverables[i].getBoundingClientRect())
+    onMouseHover($hoverables[i].getBoundingClientRect(), $hoverables[i])
   );
 }
 
 // Move the cursor
 let tweenSpeed = 0.3;
 let maganatizedPosition = null;
+let hoverableActiveElement = null;
 
 function onMouseMove(e) {
   if (!maganatizedPosition) {
@@ -48,6 +49,8 @@ function onMouseMove(e) {
       e.clientY > maganatizedPosition.bottom + 50
     ) {
       maganatizedPosition = null;
+      hoverableActiveElement.classList.remove("underlineHover");
+      hoverableActiveElement = null;
       TweenMax.to($bigBall, 0.15, {
         scale: 1,
       });
@@ -62,12 +65,13 @@ function onMouseMove(e) {
 
 // Hover an element
 
-function onMouseHover(elementPos) {
-  console.log("hi");
+function onMouseHover(elementPos, element) {
   TweenMax.to($bigBall, 0.15, {
     scale: 4,
   });
   maganatizedPosition = elementPos;
+  hoverableActiveElement = element;
+  element.classList.add("underlineHover");
 }
 
 //ripple effect
@@ -89,5 +93,7 @@ document.addEventListener("click", () => {
         });
       },
     });
+  } else if (maganatizedPosition) {
+    hoverableActiveElement.click();
   }
 });

@@ -1,10 +1,10 @@
 "use client";
 import "./globals.css";
 
-import { Inter } from "next/font/google";
+import { Hanken_Grotesk } from "next/font/google";
 import Script from "next/script";
 
-const inter = Inter({ subsets: ["latin"] });
+const hanken_Grotesk = Hanken_Grotesk({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -13,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={hanken_Grotesk.className}>
         <div className="cursor">
           <div className="cursor__ball cursor__ball--big">
             <svg height="40" width="40">
@@ -30,6 +30,7 @@ export default function RootLayout({
       </body>
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" />
       <Script src="./mouseScript.js" />
+      <Script src="./nameSandScript.js" />
     </html>
   );
 }

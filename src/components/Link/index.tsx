@@ -1,15 +1,21 @@
 "use client";
-const Link = () => {
+import styles from "./styles.module.scss";
+
+interface LinkProps {
+  url?: string;
+  text: string;
+  color?: string;
+}
+const Link = (props: LinkProps) => {
+  const { url, text, color = "white" } = props;
   return (
-    <div>
-      <a
-        className="hoverable"
-        style={{ color: "white", backgroundColor: "red", width: "100px" }}
-      >
-        this is a link
-      </a>
-      Link
-    </div>
+    <a
+      className={styles.linkStyle + " hoverable"}
+      style={{ color: color }}
+      href={url}
+    >
+      {text}
+    </a>
   );
 };
 export default Link;

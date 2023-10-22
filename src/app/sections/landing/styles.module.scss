@@ -1,0 +1,28 @@
+.landingScaffold {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  position: relative;
+  .intro {
+    transform: translateY(-54px);
+  }
+  .im {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 3rem;
+    transform: translate(-310px, -120px);
+    pointer-events: none;
+  }
+}
+.linkPanel {
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 200px;
+}
