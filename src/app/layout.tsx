@@ -28,8 +28,8 @@ export default function RootLayout({
           {children}
         </div>
       </body>
-      <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" />
-      <Script src="./mouseScript.js" />
+      <Script defer src="./mouseScript.js" />
+
       <Script src="./nameSandScript.js" />
     </html>
   );
