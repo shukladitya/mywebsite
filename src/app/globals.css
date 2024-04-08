@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Hanken Grotesk";
+  src: url("../../public/fonts/HKG.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
