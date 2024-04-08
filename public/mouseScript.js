@@ -34,10 +34,13 @@ loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js")
     let hoverableActiveElement = null;
 
     function onMouseMove(e) {
+      const cursorX = e.pageX - window.scrollX;
+      const cursorY = e.pageY - window.scrollY;
+
       if (!maganatizedPosition) {
         TweenMax.to($bigBall, tweenSpeed, {
-          x: e.pageX - 15,
-          y: e.pageY - 12,
+          x: cursorX - 15,
+          y: cursorY - 12,
           onComplete: () => {
             if (maganatizedPosition) {
               TweenMax.to($bigBall, 0.3, {
@@ -54,18 +57,18 @@ loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js")
             maganatizedPosition.left +
             maganatizedPosition.width / 2 -
             21 +
-            (e.clientX - maganatizedPosition.left) * 0.2,
+            (cursorX - maganatizedPosition.left) * 0.2,
           y:
             maganatizedPosition.top +
             maganatizedPosition.height / 2 -
             6 +
-            (e.clientY - maganatizedPosition.top) * 0.2,
+            (cursorY - maganatizedPosition.top) * 0.2,
         });
         if (
-          e.clientX < maganatizedPosition.left - 50 ||
-          e.clientX > maganatizedPosition.right + 50 ||
-          e.clientY < maganatizedPosition.top - 50 ||
-          e.clientY > maganatizedPosition.bottom + 50
+          cursorX < maganatizedPosition.left - 50 ||
+          cursorX > maganatizedPosition.right + 50 ||
+          cursorY < maganatizedPosition.top - 50 ||
+          cursorY > maganatizedPosition.bottom + 50
         ) {
           maganatizedPosition = null;
           hoverableActiveElement.classList.remove("underlineHover");
@@ -77,8 +80,8 @@ loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js")
       }
 
       TweenMax.to($smallBall, 0.1, {
-        x: e.pageX,
-        y: e.pageY - 1,
+        x: cursorX,
+        y: cursorY - 1,
       });
     }
 
