@@ -32,10 +32,27 @@ loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js")
     let tweenSpeed = 0.3;
     let maganatizedPosition = null;
     let hoverableActiveElement = null;
+    let isCursorInitialized = false;
+    TweenMax.set($bigBall, { visibility: "hidden" });
+    TweenMax.set($smallBall, { visibility: "hidden" });
 
     function onMouseMove(e) {
       const cursorX = e.pageX - window.scrollX;
       const cursorY = e.pageY - window.scrollY;
+
+      if (!isCursorInitialized) {
+        TweenMax.set($bigBall, {
+          x: cursorX - 15,
+          y: cursorY - 12,
+          visibility: "visible",
+        });
+        TweenMax.set($smallBall, {
+          x: cursorX,
+          y: cursorY - 1,
+          visibility: "visible",
+        });
+        isCursorInitialized = true;
+      }
 
       if (!maganatizedPosition) {
         TweenMax.to($bigBall, tweenSpeed, {
