@@ -1,0 +1,21 @@
+.scaffold {
+  background-color: black;
+  padding-top: 300px;
+}
+
+.parallaxBG {
+  width: 100vw;
+  height: 100%;
+  filter: grayscale(100%);
+  transition: all 0.5s ease;
+  &:hover {
+    filter: grayscale(0%);
+    transition: all 0.5s ease;
+  }
+}
+.linkPanel {
+  margin-top: 100px;
+  margin-left: 200px;
+  display: flex;
+  grid-gap: 100px;
+}

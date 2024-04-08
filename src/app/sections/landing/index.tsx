@@ -1,5 +1,4 @@
 import Link from "@/components/Link";
-import Signature from "@/components/signature";
 import styles from "./styles.module.scss";
 import SandName from "@/components/SandName";
 
@@ -13,10 +12,10 @@ const LandingSection = () => {
 
       {/* <Signature color="white" /> */}
       <div className={styles.linkPanel}>
-        <Link text="Résumé" url="http://google.com" />
-        <Link text="Blog" url="http://fb.com" />
+        <Link text="About" url="http://google.com" />
+        <Link text="LinkedIn" url="http://fb.com" />
         <Link text="Github" />
-        <Link text="LinkedIn" />
+        <Link text="Instagram" />
       </div>
     </div>
   );
