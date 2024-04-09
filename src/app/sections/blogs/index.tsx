@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import Link from "next/link";
-import Image from "next/image";
+
 const Blogs = () => {
   const [posts, setPosts] = useState<
     {
@@ -56,7 +56,7 @@ const Blogs = () => {
 
   return (
     <div className={styles.scaffold}>
-      <h1>Blog</h1>
+      <h1>Weblogs</h1>
       <div className={styles.blogs}>
         {posts.length &&
           posts.map((post) => (
