@@ -32,9 +32,9 @@ const Blogs = () => {
               image: item["content:encoded"]
                 ? item["content:encoded"][0]?.match(/src="([^"]+)"/)[1]
                 : item?.description[0]?.match(/src="([^"]+)"/)[1],
-              link: item.link[0],
-              title: item.title[0],
-              tags: item.category,
+              link: item?.link[0],
+              title: item?.title[0],
+              tags: item?.category,
             };
           })
         );
@@ -66,7 +66,7 @@ const Blogs = () => {
                 <p>{post.title}</p>
                 {post?.tags?.length && (
                   <div className={styles.tags}>
-                    {post.tags.map((tag) => (
+                    {post?.tags?.map((tag) => (
                       <span key={tag}>{tag}</span>
                     ))}
                   </div>
