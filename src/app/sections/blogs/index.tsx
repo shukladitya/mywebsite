@@ -58,7 +58,7 @@ const Blogs = () => {
     <div className={styles.scaffold}>
       <h1>Weblogs</h1>
       <div className={styles.blogs}>
-        {posts.length &&
+        {posts?.length &&
           posts.map((post) => (
             <Link key={post.link} href={post.link}>
               <div>
