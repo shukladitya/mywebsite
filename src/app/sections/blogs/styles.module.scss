@@ -8,6 +8,12 @@
     font-weight: 100;
     margin-left: 200px;
   }
+  @media (orientation: portrait) {
+    padding-top: 200px;
+    h1 {
+      margin-left: 50px;
+    }
+  }
 }
 .blogs {
   display: grid;
@@ -51,5 +57,11 @@
       border-radius: 30px;
       margin-bottom: 10px;
     }
+  }
+
+  @media (orientation: portrait) {
+    margin: 0 50px;
+    margin-top: 50px;
+    grid-template-columns: 1fr;
   }
 }
