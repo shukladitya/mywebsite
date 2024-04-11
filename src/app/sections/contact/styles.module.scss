@@ -49,6 +49,24 @@
       transition: all 0.5s ease;
     }
   }
+  @media (orientation: portrait) {
+    .contactBG {
+      border-radius: 50px 50px 0 0;
+      font-size: 120px;
+      .hoverable {
+        flex-direction: column;
+      }
+      .arrow {
+        width: 120px;
+        margin-top: 0;
+        margin-left: 20px;
+        margin-top: 10px;
+      }
+      .itallic {
+        margin-left: 0px;
+      }
+    }
+  }
 }
 
 .darkBg {
@@ -92,6 +110,7 @@
   textarea {
     height: 300px;
     max-width: 700px;
+    flex-grow: 1;
   }
 
   .contactForm {
@@ -99,6 +118,50 @@
     flex-direction: column;
     width: 700px;
     gap: 40px;
+  }
+
+  @media (max-width: 1250px) {
+    h1 {
+      font-size: 40px;
+    }
+    input,
+    textarea {
+      font-size: 18px !important;
+      padding: 10px;
+      width: 420px;
+    }
+    .contactForm {
+      width: 450px;
+    }
+    .linkPanel {
+      margin-left: auto;
+    }
+  }
+
+  @media (orientation: portrait) {
+    padding-top: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    flex-direction: column;
+
+    .contactForm {
+      width: 100%;
+      gap: 20px;
+    }
+    input,
+    textarea {
+      width: auto !important;
+    }
+    textarea {
+      flex-grow: auto;
+    }
+    .contactForm {
+      gap: 20px;
+    }
+    .linkPanel {
+      gap: 30px;
+      margin-top: 30px;
+    }
   }
 }
 
