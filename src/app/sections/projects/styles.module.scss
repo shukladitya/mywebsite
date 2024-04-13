@@ -18,8 +18,18 @@
   margin-left: 200px;
   display: flex;
   grid-gap: 100px;
+  @media (orientation: portrait) {
+    margin-left: 50px;
+    margin-right: 50px;
+    grid-gap: 0;
+    justify-content: space-between;
+    margin-top: 50px;
+  }
 }
 
-.margin{
+.margin {
   margin-top: 300px;
+  @media (orientation: portrait) {
+    margin-top: 200px;
+  }
 }
