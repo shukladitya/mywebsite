@@ -1,6 +1,11 @@
 loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
   .then(() => {
     document.fonts.load("600 228px 'Hanken Grotesk'").then(() => {
+      const fontSizeFactory = (canvasWidth, canvasHeight) => {
+        if (canvasWidth <= 400) return 114;
+        else if (canvasWidth <= 430 || canvasWidth < canvasHeight) return 140;
+        else return 228;
+      };
       const canvas = document.querySelector("#sandCanvas");
       const ctx = canvas.getContext("2d");
       canvas.width = window.innerWidth;
@@ -13,7 +18,10 @@ loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
       });
 
       ctx.fillStyle = "white";
-      ctx.font = "600 228px 'Hanken Grotesk'";
+      ctx.font = `600 ${fontSizeFactory(
+        canvas.width,
+        canvas.height
+      )}px 'Hanken Grotesk'`;
       ctx.textAlign = "center";
       ctx.fillText("aditya", canvas.width / 2, canvas.height / 2 + 100);
       const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -49,10 +57,37 @@ loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
 
         farAway = distance > 500;
       }
+      function onTouchMove(e) {
+        const touch = e.touches[0]; // Get the first touch point
+
+        // Adjust touch position with scroll offset
+        mouse.x = touch.pageX - window.scrollX + 5;
+        mouse.y = touch.pageY - window.scrollY + 60;
+
+        console.log(canvasLocation.center);
+
+        // Find distance between touch point and canvas center
+        let dx = mouse.x - canvasLocation.center.x;
+        let dy = mouse.y - canvasLocation.center.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        farAway = distance > 500;
+      }
+
+      function onScroll() {
+        const currentScrollPosition = window.pageYOffset;
+        if (currentScrollPosition !== lastScrollPosition) {
+          farAway = true;
+        }
+        lastScrollPosition = currentScrollPosition;
+      }
 
       canvas.addEventListener("mousemove", _.throttle(onMouseMove, 16)); // Call every 16ms (approximately 60 FPS)
+      canvas.addEventListener("touchstart", onTouchMove);
+      canvas.addEventListener("touchmove", _.throttle(onTouchMove, 16));
+      window.addEventListener("scroll", onScroll);
 
       let farAway = false;
+      let lastScrollPosition = window.pageYOffset;
 
       class Particle {
         constructor(x, y, density, radius, retreatingSpeed) {
