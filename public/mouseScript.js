@@ -136,6 +136,42 @@ loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js")
         hoverableActiveElement.click();
       }
     });
+
+    // on mobile device add hoverclass on scroll
+    function applyForcedHoverState(
+      currentScroll,
+      centerOfScreen,
+      rangeThreshold
+    ) {
+      // Get all elements on the page
+      const elements = document.querySelectorAll("*");
+
+      // Loop through each element
+      elements.forEach((element) => {
+        const { top, bottom } = element.getBoundingClientRect();
+
+        // Check if the element is within the range from the center
+        const isInRange =
+          top <= centerOfScreen + rangeThreshold &&
+          bottom >= centerOfScreen - rangeThreshold;
+
+        // Apply or remove the forced hover state
+        if (isInRange) {
+          element.classList.add("forcedHover");
+        } else {
+          element.classList.remove("forcedHover");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", () => {
+      const currentScroll =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const centerOfScreen = window.innerHeight / 2;
+      const rangeThreshold = 60; // Adjust this value to change the range
+
+      applyForcedHoverState(currentScroll, centerOfScreen, rangeThreshold);
+    });
   })
   .catch(() => {
     console.error("Script loading failed! Handle this error");

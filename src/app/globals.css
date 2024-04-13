@@ -149,3 +149,8 @@ add this class dynamically in mouseScript.js */
   transform: scaleX(1) !important;
   transform-origin: bottom left !important;
 }
+
+.forcedHover {
+  filter: grayscale(0%) !important;
+  transition: all 0.3s ease !important;
+}
