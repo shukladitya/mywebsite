@@ -164,14 +164,20 @@ loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js")
       });
     }
 
-    window.addEventListener("scroll", () => {
-      const currentScroll =
-        window.pageYOffset || document.documentElement.scrollTop;
-      const centerOfScreen = window.innerHeight / 2;
-      const rangeThreshold = 60; // Adjust this value to change the range
+    //check if its a mobile device
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+    if (isMobile)
+      window.addEventListener("scroll", () => {
+        const currentScroll =
+          window.pageYOffset || document.documentElement.scrollTop;
+        const centerOfScreen = window.innerHeight / 2;
+        const rangeThreshold = 60; // Adjust this value to change the range
 
-      applyForcedHoverState(currentScroll, centerOfScreen, rangeThreshold);
-    });
+        applyForcedHoverState(currentScroll, centerOfScreen, rangeThreshold);
+      });
   })
   .catch(() => {
     console.error("Script loading failed! Handle this error");
