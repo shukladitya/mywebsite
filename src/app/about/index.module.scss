@@ -1,0 +1,44 @@
+.scaffold {
+  background-color: black;
+  height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.textArea {
+  margin: auto;
+  @media screen and (orientation: portrait) {
+    margin: 0 50px;
+  }
+}
+.text {
+  font-size: 40px;
+  font-weight: 200;
+  &:nth-child(1) {
+    margin-bottom: 40px;
+  }
+  @media screen and (orientation: portrait) {
+    font-size: 27px;
+  }
+}
+.loadingText {
+  position: relative;
+}
+.loadingAnimation {
+  scale: 0.4;
+  height: 30px;
+  position: absolute;
+  right: -422px;
+  top: -12px;
+  left: 0;
+  @media screen and (orientation: portrait) {
+    right: calc(100% - 497px);
+    left: 38px;
+    top: -16px;
+    scale: 0.3;
+  }
+}
+.linkPanel {
+  margin-top: 50px;
+}

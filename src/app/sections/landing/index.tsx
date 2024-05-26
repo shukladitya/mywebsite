@@ -12,10 +12,10 @@ const LandingSection = () => {
 
       {/* <Signature color="white" /> */}
       <div className={styles.linkPanel}>
-        <Link text="About" url="http://google.com" />
-        <Link text="LinkedIn" url="http://fb.com" />
-        <Link text="Github" />
-        <Link text="Instagram" />
+        <Link text="About" url="/about" />
+        <Link text="LinkedIn" url="https://www.linkedin.com/in/adityashk/" />
+        <Link text="Github" url="https://github.com/shukladitya" />
+        <Link text="Instagram" url="https://www.instagram.com/its.aurelius/" />
       </div>
     </div>
   );

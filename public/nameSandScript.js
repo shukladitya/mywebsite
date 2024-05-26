@@ -7,7 +7,8 @@ loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
         else return 228;
       };
       const canvas = document.querySelector("#sandCanvas");
-      const ctx = canvas.getContext("2d");
+      const ctx = canvas?.getContext("2d");
+      if (!ctx) return;
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
 

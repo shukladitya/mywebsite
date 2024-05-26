@@ -9,17 +9,17 @@ const Projects = () => {
       <div className={styles.parallax}>
         <Image src={Mountain} alt="Mountain" className={styles.parallaxBG} />
         <div className={styles.linkPanel}>
-          <Link text="View" url="http://google.com" />
-          <Link text="Download" url="http://fb.com" />
-          <Link text="Code" url="http://instagram.com" />
+          <Link text="View" url="" />
+          <Link text="Download" url="" />
+          <Link text="Code" url="" />
         </div>
       </div>
       <div className={`${styles.parallax} ${styles.margin}`}>
         <Image src={Tulsidas} alt="Tuslidas" className={styles.parallaxBG} />
         <div className={styles.linkPanel}>
-          <Link text="View" url="http://google.com" />
-          <Link text="How To" url="http://fb.com" />
-          <Link text="Code" url="http://instagram.com" />
+          <Link text="View" url="" />
+          <Link text="How To" url="" />
+          <Link text="Code" url="" />
         </div>
       </div>
     </div>
