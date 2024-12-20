@@ -14,6 +14,17 @@
     font-size: 3rem;
     transform: translate(-310px, -120px);
     pointer-events: none;
+    @media (max-width: 700px) {
+      left: 52%;
+    }
+    @media (max-width: 600px) {
+      left: 80%;
+      top: 53%;
+    }
+    @media (max-width: 400px) {
+      left: 90%;
+      top: 55%;
+    }
   }
 }
 .linkPanel {

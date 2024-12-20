@@ -1,4 +1,3 @@
-// Define the loadScript function first
 function loadScript(scriptUrl) {
   const script = document.createElement("script");
   script.src = scriptUrl;
@@ -14,10 +13,8 @@ function loadScript(scriptUrl) {
   });
 }
 
-// Main script execution
 loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
   .then(() => {
-    // Wait for the font to load
     return document.fonts.load("600 228px 'Hanken Grotesk'");
   })
   .then(() => {
@@ -34,12 +31,10 @@ loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    // Resize event listener
     window.addEventListener("resize", () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
 
-      // Reinitialize the canvas content after resize
       ctx.fillStyle = "white";
       ctx.font = `600 ${fontSizeFactory(
         canvas.width,
@@ -48,7 +43,6 @@ loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
       ctx.textAlign = "center";
       ctx.fillText("aditya", canvas.width / 2, canvas.height / 2 + 100);
 
-      // Reinitialize particles
       init();
     });
 
@@ -115,17 +109,29 @@ loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
 
     let farAway = false;
     let lastScrollPosition = window.pageYOffset;
-    let particleArray = []; // Declare particleArray in a wider scope
+    let particleArray = [];
 
     class Particle {
-      constructor(x, y, density, radius, retreatingSpeed) {
-        this.x = x;
-        this.y = y;
-        this.baseX = this.x;
-        this.baseY = this.y;
+      constructor(targetX, targetY, density, radius, retreatingSpeed) {
+        // Random starting position
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+
+        // Target position (where the particle should end up)
+        this.targetX = targetX;
+        this.targetY = targetY;
+
+        // Base position (for mouse interaction)
+        this.baseX = targetX;
+        this.baseY = targetY;
+
         this.radius = radius;
         this.density = density;
         this.retreatingSpeed = retreatingSpeed;
+
+        // Add initial animation properties
+        this.initialSpeed = 0.005 + Math.random() * 0.005;
+        this.hasReachedTarget = false;
       }
 
       draw() {
@@ -137,6 +143,22 @@ loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
       }
 
       update() {
+        if (!this.hasReachedTarget) {
+          // Move towards target position
+          let dx = this.targetX - this.x;
+          let dy = this.targetY - this.y;
+
+          this.x += dx * this.initialSpeed;
+          this.y += dy * this.initialSpeed;
+
+          // Check if particle has approximately reached its target
+          if (Math.abs(dx) < 0.5 && Math.abs(dy) < 0.5) {
+            this.hasReachedTarget = true;
+          }
+          return;
+        }
+
+        // Normal mouse interaction after reaching target
         let dx = mouse.x - this.x;
         let dy = mouse.y - this.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
@@ -172,12 +194,10 @@ loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
             data.data[y * 4 * data.width + x * 4 + 3] > 128 &&
             Math.random() < 0.2
           ) {
-            let positionX = x;
-            let positionY = y;
             particleArray.push(
               new Particle(
-                positionX,
-                positionY,
+                x,
+                y,
                 Math.random() * 200 + 30,
                 0.5 + Math.random() * 2.5,
                 40 + Math.random() * 140
@@ -198,7 +218,6 @@ loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
       requestAnimationFrame(animate);
     }
 
-    // Initialize particles and start animation
     init();
     animate();
   })
