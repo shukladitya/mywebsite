@@ -130,6 +130,13 @@ body .cursor__ball circle {
   pointer-events: none;
 }
 
+@media (hover: none) and (pointer: coarse) {
+  .cursor__ball--big,
+  .cursor__ball--small {
+    display: none !important;
+  }
+}
+
 /* 
 add this class dynamically in mouseScript.js */
 
