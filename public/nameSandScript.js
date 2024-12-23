@@ -26,12 +26,8 @@ loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
 
     function updateMousePosition(pageX, pageY) {
       const rect = canvas.getBoundingClientRect();
-
-      // Calculate mouse position relative to canvas, accounting for scroll
       mouse.x = pageX - rect.left - window.scrollX;
       mouse.y = pageY - rect.top - window.scrollY;
-
-      // Check if mouse is within canvas bounds
       mouse.isInCanvas =
         mouse.x >= 0 &&
         mouse.x <= canvas.width &&
@@ -62,7 +58,6 @@ loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
 
-      // Update text position and get new data
       ctx.fillStyle = "white";
       ctx.font = `600 ${fontSizeFactory(
         canvas.width,
@@ -73,7 +68,6 @@ loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
 
       const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
-      // If initial animation is complete, update particle positions proportionally
       if (isInitialAnimationComplete && particleArray.length > 0) {
         const scaleX = canvas.width / oldWidth;
         const scaleY = canvas.height / oldHeight;
@@ -124,7 +118,6 @@ loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
     }
 
     function onScroll() {
-      // Update mouse position on scroll
       if (lastMouseEvent) {
         updateMousePosition(lastMouseEvent.pageX, lastMouseEvent.pageY);
       }
@@ -149,18 +142,25 @@ loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
 
     class Particle {
       constructor(targetX, targetY, density, radius, retreatingSpeed) {
-        // Random starting position
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        // Determine if this particle should start close to target (70% chance)
+        const startNearTarget = Math.random() < 0.9;
 
-        // Target position (where the particle should end up)
+        if (startNearTarget) {
+          // Start within a radius of 100-200 pixels from target
+          const angle = Math.random() * Math.PI * 2;
+          const distance = 20 + Math.random() * 100;
+          this.x = targetX + Math.cos(angle) * distance;
+          this.y = targetY + Math.sin(angle) * distance;
+        } else {
+          // Random starting position anywhere on canvas
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+        }
+
         this.targetX = targetX;
         this.targetY = targetY;
-
-        // Base position (for mouse interaction)
         this.baseX = targetX;
         this.baseY = targetY;
-
         this.radius = radius;
         this.density = density;
         this.retreatingSpeed = retreatingSpeed;
@@ -168,13 +168,13 @@ loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
         // Create different speed groups
         const speedGroup = Math.random();
         if (speedGroup < 0.1) {
-          // Very slow particles (20% chance)
+          // Very slow particles (10% chance)
           this.initialSpeed = 0.002 + Math.random() * 0.003;
         } else if (speedGroup < 0.3) {
-          // Slow particles (30% chance)
+          // Slow particles (20% chance)
           this.initialSpeed = 0.005 + Math.random() * 0.005;
         } else if (speedGroup < 0.8) {
-          // Medium speed particles (30% chance)
+          // Medium speed particles (50% chance)
           this.initialSpeed = 0.01 + Math.random() * 0.01;
         } else {
           // Fast particles (20% chance)
@@ -194,7 +194,6 @@ loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
 
       update() {
         if (!this.hasReachedTarget) {
-          // Initial animation code remains the same
           let dx = this.targetX - this.x;
           let dy = this.targetY - this.y;
 
@@ -213,7 +212,6 @@ loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
           return;
         }
 
-        // Only process mouse interaction if mouse is in canvas
         if (mouse.isInCanvas) {
           let dx = mouse.x - this.x;
           let dy = mouse.y - this.y;
@@ -231,7 +229,6 @@ loadScript("https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js")
           }
         }
 
-        // Return to base position when mouse is far or out of canvas
         if (farAway || !mouse.isInCanvas) {
           if (this.x !== this.baseX) {
             let dx = this.x - this.baseX;
