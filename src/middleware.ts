@@ -5,7 +5,7 @@ export function middleware(request: NextRequest) {
   const html = `<!DOCTYPE html>
 <html lang="hi">
 <body style="margin:0; height:100vh; display:flex; align-items:center; justify-content:center;">
-  हेलो, मेरा नाम आदित्य है! ¯\\_(ツ)_/¯
+  मेरा नाम आदित्य है! ¯\\_(ツ)_/¯
 </body>
 </html>`;
 
