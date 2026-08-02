@@ -3,14 +3,23 @@ import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
   const html = `<!DOCTYPE html>
-<html lang="hi">
-<body style="margin:0; height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap: 16px;">
-  <div style="font-size: 1.5rem; font-weight: 500;">मेरा नाम आदित्य है! ¯\\_(ツ)_/¯</div>
-  <div style="display:flex; gap: 36px; font-size: 1rem;">
-    <a href="https://www.linkedin.com/in/adityashk/" target="_blank">मेरा लिंक्डइन</a>
-    <a href="https://x.com/hi_adty" target="_blank">मेरा ट्विटर</a>
-    <a href="https://www.ariapp.co/" target="_blank">मेरा प्रोजेक्ट</a>
-    <a href="https://drive.google.com/file/d/1xmnq4SV2X6tE4HU_7SZCjAS745DFoxvS/view?usp=sharing" target="_blank">मेरा रेज़्यूमे</a>
+<html lang="en">
+<body style="font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
+  <div>
+    <h1>Hello, this small part of the internet belongs to me! ¯\\_(ツ)_/¯</h1>
+    
+    <p>
+      <a href="https://www.linkedin.com/in/adityashk/" target="_blank">LinkedIn</a> | 
+      <a href="https://x.com/hi_adty" target="_blank">Twitter</a> | 
+      <a href="https://drive.google.com/file/d/1xmnq4SV2X6tE4HU_7SZCjAS745DFoxvS/view?usp=sharing" target="_blank">Resume</a>
+    </p>
+    
+    <h2>Interesting things worth checking out:</h2>
+    <ul>
+      <li><a href="https://www.ariapp.co/" target="_blank">Ari</a></li>
+      <li><a href="https://practick.io/" target="_blank">Practick.io</a></li>
+      <li><a href="https://shukladitya.github.io/game-of-life/" target="_blank">Game of Life</a></li>
+    </ul>
   </div>
 </body>
 </html>`;
