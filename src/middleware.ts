@@ -19,6 +19,7 @@ export function middleware(request: NextRequest) {
       <li><a href="https://www.ariapp.co/" target="_blank">Ari</a></li>
       <li><a href="https://practick.io/" target="_blank">Practick.io</a></li>
       <li><a href="https://shukladitya.github.io/game-of-life/" target="_blank">Game of Life</a></li>
+      <li><a href="/night-scope.html" target="_blank">Night Scope</a></li>
     </ul>
   </div>
 </body>
@@ -38,7 +39,8 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
+     * - night-scope.html (game page)
      */
-    "/((?!_next/static|_next/image|favicon.ico).*)",
+    "/((?!_next/static|_next/image|favicon.ico|night-scope.html).*)",
   ],
 };
