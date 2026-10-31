@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engines": {
+    "node": "26.x"
+  },
   "dependencies": {
     "next": "13.5.4",
     "nodemailer": "^6.9.13",
